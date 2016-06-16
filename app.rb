@@ -1,10 +1,14 @@
 #coding utf-8
+
+# Программа читает текст из файла input.txt записанный в формате UTF-8,
+# и выводит частотную характеристику (слова и сколько раз они стречаются в тексте)
+# в файл output.txt
+
+# гем поддержки Unicode
 require 'unicode'
 
-f=File.open("input.txt", "r")
-
-hh={}
-
+# функция добавляет в хэш hh слово ww в качестве ключа, если его там нет, и устанавливает его значение в 1
+# если слово уже есть, значение ключа увеличивается на 1
 def add_word_to_hash hh, ww
   if hh[ww]
     hh[ww]+=1;
@@ -14,8 +18,15 @@ def add_word_to_hash hh, ww
   return hh
 end
 
+# открывается входной файл
+f=File.open("input.txt", "r")
+hh={}
+
+# читаем файл построчно
 while line=f.gets
+  # строки бъются на слова
   a=line.split(/[ ,-;!:\.\?\n\t]+/)
+  # каждое слово, если оно не пустое, переводится в нижний регистр в формате UTF-8, и обрабатывается функцией add_word_to_hash
   a.each do |item|
     unless item.empty?
       hh=add_word_to_hash(hh, Unicode::downcase(item.force_encoding(Encoding::UTF_8)))
@@ -24,9 +35,12 @@ while line=f.gets
 end
 
 f.close
-f=File.open("output.txt", "w")
 
+# открывается выходной файл
+f=File.open("output.txt", "w")
+# хеш сортируется по убыванию значений
 hh=hh.sort_by {|key, value| -value}
+# из хэша пары ключ-значение записываются в файл
 hh.each do |key, value|
   f.write("#{value} #{key}\n")
 end
