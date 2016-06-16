@@ -1,3 +1,6 @@
+#coding utf-8
+require 'unicode'
+
 f=File.open("input.txt", "r")
 
 hh={}
@@ -12,9 +15,11 @@ def add_word_to_hash hh, ww
 end
 
 while line=f.gets
-  a=line.split(/[ .,-;!?:\n]+/)
+  a=line.split(/[ ,-;!:\.\?\n\t]+/)
   a.each do |item|
-    hh=add_word_to_hash hh, item
+    unless item.empty?
+      hh=add_word_to_hash(hh, Unicode::downcase(item.force_encoding(Encoding::UTF_8)))
+    end
   end
 end
 
