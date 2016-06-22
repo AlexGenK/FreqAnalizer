@@ -11,6 +11,7 @@ print "Select exercice: "
 case gets.to_i
   when 0 
     require "fran.rb"
+    Fran.start
   else
     print "Incorrect input!"
 end
