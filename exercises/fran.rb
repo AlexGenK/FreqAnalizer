@@ -38,7 +38,7 @@ module Fran
       f.write("#{value} #{key}\n")
     end
     f.close
-    puts "Well done!"
+    puts "Well done!".green
 
   end
 

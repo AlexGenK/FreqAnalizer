@@ -1,17 +1,19 @@
 # encoding: utf-8
+
+require 'colorize'
 $LOAD_PATH << './exercises/'
 
 ar_exer=['Frequency analyzer',
          'Reverce of the sentence']
 
-puts
+puts "\n"+"-"*20+" Exercises "+"-"*20
 ar_exer.each_with_index {|item, index| puts "#{index} - #{item}"}
-puts
+puts "-"*51+"\n\n"
 print "Select exercice: "
-case gets.to_i
-  when 0 
+case gets.chomp
+  when "0" 
     require "fran.rb"
     Fran.start
   else
-    print "Incorrect input!"
+    puts "Incorrect input!".white.on_red
 end
