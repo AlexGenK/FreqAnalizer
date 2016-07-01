@@ -23,6 +23,9 @@ case gets.chomp
   when "0" 
     require "fran.rb"
     Fran.start
+  when "1" 
+    require "revsen.rb"
+    Revsen.start
   else
     puts "Incorrect input!".white.on_red
 end
