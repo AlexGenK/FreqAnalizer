@@ -10,7 +10,8 @@ $LOAD_PATH << './exercises/'
 
 # список задач
 ar_exer=['Frequency analyzer',
-         'Reverce of the sentence']
+         'Reverce of the sentence',
+         'FizzBuzz']
 
 # вывод списка задач и выбор нужной задачи
 puts "\n"+"-"*20+" Exercises "+"-"*20
@@ -26,6 +27,9 @@ case gets.chomp
   when "1" 
     require "revsen.rb"
     Revsen.start
+  when "2"
+    require "fizzbuzz.rb"
+    Fizzbuzz.start
   else
     puts "Incorrect input!".white.on_red
 end
